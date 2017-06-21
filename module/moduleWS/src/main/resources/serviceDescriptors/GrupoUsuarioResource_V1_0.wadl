@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:ns0="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioresource/v1_0"
+             xmlns:ns1="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioebo/v1"
+             xmlns:ns2="http://www.portoseguro.com.br/foundation/PortoSeguroMessage/v1_0">
+  <grammars>
+    <xs:schema>
+      <xs:import namespace="http://www.portoseguro.com.br/foundation/PortoSeguroMessage/v1_0"
+                 schemaLocation="FaultV1_0.xsd"/>
+    </xs:schema>
+    <xs:schema>
+      <xs:import namespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioebo/v1"
+                 schemaLocation="GrupoUsuarioEBO_V1.xsd"/>
+    </xs:schema>
+    <!-- This should be defined inline, otherwise, the tested version of wadl2java does not generate the code correctly -->
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+               targetNamespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioresource/v1_0">
+      <xs:element name="grupoUsuarioEBO" type="ns1:GrupoUsuarioEBO"/>
+      <xs:element name="listaGruposUsuarioEBO" type="ns1:ListaGruposUsuarioEBO"/>
+    </xs:schema>
+  </grammars>
+  <resources base="http://localhost:8080/moduleWS/rest/">
+    <resource path="v1/gruposUsuario" id="GruposUsuarioResource">
+      <doc title="Recurso para Grupos de Usuario"/>
+      <method name="GET" id="find">
+        <request>
+          <param name="skip" style="query" type="xs:integer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+              <xs:documentation>
+                <comportamentoDoServico>Determina o registro inicial a ser retornado iniciando-se de 0</comportamentoDoServico>
+                <regrasMapeamento/>
+              </xs:documentation>
+            </xs:annotation>
+          </param>
+          <param name="top" style="query" type="xs:integer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+              <xs:documentation>
+                <comportamentoDoServico>Determina o registro final a ser retornado</comportamentoDoServico>
+                <regrasMapeamento />
+              </xs:documentation>
+            </xs:annotation>
+          </param>
+          <param name="campos" style="query" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+              <xs:documentation>
+                <comportamentoDoServico>Determina quais campos da entidade sao retornados</comportamentoDoServico>
+                <regrasMapeamento />
+              </xs:documentation>
+            </xs:annotation>
+          </param>
+          <param name="nomeGrupoUsuario" style="query" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+              <xs:documentation>
+                <entidade>Grupo Usuario</entidade>
+                <atributo>nome grupo usuario</atributo>
+                <comportamentoDoServico>filtra os elementos usando LIKE para segundo o nome do grupo usuario</comportamentoDoServico>
+                <regrasMapeamento>copy as is</regrasMapeamento>
+              </xs:documentation>
+            </xs:annotation>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="ns0:listaGruposUsuarioEBO"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+        </response>
+      </method>
+      <method name="POST" id="create">
+        <request>
+          <representation mediaType="application/json" element="ns0:grupoUsuarioEBO"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json" element="ns0:grupoUsuarioEBO"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+        </response>
+        <response status="409">
+          <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+        </response>
+      </method>
+      <resource path="{id}">
+        <doc title="Recurso para um Grupo de Usuario especifico"/>
+        <param name="id" style="template" type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:annotation>
+              <xs:documentation>
+                <entidade>Grupo Usuario</entidade>
+                <atributo>codigo grupo usuario</atributo>
+                <comportamentoDoServico>determina o elemento a ser buscado, atualizado ou removido</comportamentoDoServico>
+                <regrasMapeamento>copy as is</regrasMapeamento>
+              </xs:documentation>
+            </xs:annotation>
+        </param>
+        <method name="GET" id="findById">
+          <response status="200">
+            <representation mediaType="application/json" element="ns0:grupoUsuarioEBO"/>
+          </response>
+          <response status="404">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+          <response status="500">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+        </method>
+        <method name="DELETE" id="remove">
+          <response status="200"/>
+          <response status="404">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+          <response status="500">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+        </method>
+        <method name="PUT" id="update">
+          <request>
+            <representation mediaType="application/json" element="ns0:grupoUsuarioEBO"/>
+          </request>
+          <response status="200">
+            <representation mediaType="application/json" element="ns0:grupoUsuarioEBO"/>
+          </response>
+          <response status="400">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+          <response status="409">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+          <response status="500">
+            <representation mediaType="application/json" element="ns2:portoSeguroFaultInfo"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>

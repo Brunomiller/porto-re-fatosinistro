@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.porto.re.module</groupId>
+    <artifactId>module</artifactId>
+    <version>1.2.4-SNAPSHOT</version>
+  </parent>
+  <artifactId>moduleWS</artifactId>
+  <packaging>war</packaging>
+  <name>moduleWS</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>3.0.6</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdlLocation>serviceDescriptors/GrupoUsuarioServiceSOAP11_V1_0.wsdl</wsdlLocation>
+                  <wsdl>${basedir}/src/main/resources/serviceDescriptors/GrupoUsuarioServiceSOAP11_V1_0.wsdl</wsdl>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-wadl2java-plugin</artifactId>
+        <version>3.0.6</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+              <wadlOptions>
+                <wadlOption>
+                  <wadl>${basedir}/src/main/resources/serviceDescriptors/GrupoUsuarioResource_V1_0.wadl</wadl>
+                  <packagename>br.com.portoseguro.ramoselementares.admin.grupousuarioresource.v1_0</packagename>
+                  <extraargs>
+                    <!-- Ideally, it would use -tMap to generate return types, 
+                      however, in the tested version of WADL2JAVA, it is not working -->
+                    <extraarg>-generateResponseForMethods*</extraarg>
+                    <!-- Validation only works with connection to the internet 
+                      <extraarg>-validate</extraarg> -->
+                  </extraargs>
+                </wadlOption>
+              </wadlOptions>
+            </configuration>
+            <goals>
+              <goal>wadl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- it removes the portofaultexception since it is defined in the 
+        re-errorhanlding -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete dir="${project.build.directory}/generated/cxf/com"
+                  includeemptydirs="true" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <warSourceDirectory>src/main/webapp</warSourceDirectory>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.apache.cxf</groupId>
+    								<artifactId>
+    									cxf-wadl2java-plugin
+    								</artifactId>
+    								<versionRange>
+    									[3.0.6,)
+    								</versionRange>
+    								<goals>
+    									<goal>wadl2java</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>
+    									org.apache.maven.plugins
+    								</groupId>
+    								<artifactId>
+    									maven-antrun-plugin
+    								</artifactId>
+    								<versionRange>[1.8,)</versionRange>
+    								<goals>
+    									<goal>run</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencies>
+    <!-- Modules Dependencies -->
+    <dependency>
+      <groupId>com.porto.re.module</groupId>
+      <artifactId>moduleService</artifactId>
+      <version>1.2.4-SNAPSHOT</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.porto.re.module</groupId>
+      <artifactId>moduleServiceInterface</artifactId>
+      <version>1.2.4-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Java EE 6 Spec. -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>6.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Arq. Components -->
+    <dependency>
+      <groupId>com.porto.re</groupId>
+      <artifactId>re-errorhandling</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+
+  </dependencies>
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="pu-innovare" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<shared-cache-mode>ALL</shared-cache-mode>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:simpleDb;create=true" />
+			<property name="javax.persistence.jdbc.user" value="" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generateDdl" value="true" />
+
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.default_cache_concurrency_strategy"
+				value="read-write" />
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.testing.cache.CachingRegionFactory" />
+			<!--
+			<property name="hibernate.max_fetch_depth" value="3"/>
+			-->
+			
+		</properties>
+	</persistence-unit>
+</persistence>

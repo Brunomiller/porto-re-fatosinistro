@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema targetNamespace="http://www.portoseguro.com.br/ebo/Common/V1_0"
+  elementFormDefault="qualified" version="1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.portoseguro.com.br/ebo/Common/V1_0">
+
+  <xsd:complexType name="ExtensionType">
+    <xsd:annotation>
+      <xsd:documentation>Elemento usado para casos elegiveis para
+        extensão
+        de uma mensagem ou tipo.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:any processContents="lax" namespace="##other"
+        minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:simpleType name="login">
+    <xsd:restriction base="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Login do Colaborador</xsd:documentation>
+      </xsd:annotation>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="email">
+    <xsd:restriction base="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Email do Colaborador</xsd:documentation>
+      </xsd:annotation>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:attributeGroup name="PaginacaoType">
+    <xsd:attribute name="tamanhoPagina" default="50">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1" />
+          <xsd:maxInclusive value="150" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="numeroPagina" default="1">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:integer">
+          <xsd:minInclusive value="1" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+</xsd:schema>

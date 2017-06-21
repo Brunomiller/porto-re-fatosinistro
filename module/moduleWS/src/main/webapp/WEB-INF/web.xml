@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+	id="WebApp_ID" version="3.0">
+	<display-name>moduleWS</display-name>
+	
+	<context-param>
+        <param-name>log4jContextName</param-name>
+        <param-value>moduleWS</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>file:///temp/log4j2-moduleWS.xml</param-value>
+    </context-param>
+	<!-- 
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Exemplo REST</web-resource-name>
+			<url-pattern>/rest/v1/gruposUsuario</url-pattern>
+			<url-pattern>/rest/v1/gruposUsuario/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>PUT</http-method>
+      <http-method>DELETE</http-method>
+		</web-resource-collection>
+		<web-resource-collection>
+			<web-resource-name>Exemplo SOAP</web-resource-name>
+			<url-pattern>/GruposUsuarioWebService_v1_0ImplService</url-pattern>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>manager</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-role>
+		<description>manager role</description>
+		<role-name>manager</role-name>
+	</security-role>
+ -->
+	<servlet>
+		<servlet-name>rest-servlet</servlet-name>
+		<servlet-class> 
+		com.ibm.websphere.jaxrs.server.IBMRestServlet 
+                </servlet-class>
+		<init-param>
+			<param-name>jaxrs.ws.rs.Application</param-name>
+			<param-value>com.porto.re.module.rest.config.RestApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+</web-app>

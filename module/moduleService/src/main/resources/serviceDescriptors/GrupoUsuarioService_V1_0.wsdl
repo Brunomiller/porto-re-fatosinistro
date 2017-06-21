@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="GrupoUsuarioService_v1_0"
+  xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+  targetNamespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+  xmlns:ns0="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+  xmlns:ns2="http://www.porto.com/re/exception">
+
+  <import namespace="http://www.porto.com/re/exception" location="PortoFaultException.wsdl">
+  </import>
+
+  <types>
+    <xs:schema>
+      <xs:import
+        namespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+        schemaLocation="GrupoUsuarioEBM_V1_0.xsd" />
+    </xs:schema>
+  </types>
+
+  <message name="procurarGrupoUsuarioResponse">
+    <part name="parameters" element="ns0:procurarGrupoUsuarioResponse"></part>
+  </message>
+  <message name="atualizarGrupoUsuarioRequest">
+    <part name="parameters" element="ns0:atualizarGrupoUsuarioRequest"></part>
+  </message>
+  <message name="criarGrupoUsuarioResponse">
+    <part name="parameters" element="ns0:criarGrupoUsuarioResponse"></part>
+  </message>
+  <message name="listarGrupoUsuarioRequest">
+    <part name="parameters" element="ns0:listarGrupoUsuarioRequest"></part>
+  </message>
+  <message name="procurarGrupoUsuarioRequest">
+    <part name="parameters" element="ns0:procurarGrupoUsuarioRequest"></part>
+  </message>
+  <message name="removerGrupoUsuarioResponse">
+    <part name="parameters" element="ns0:removerGrupoUsuarioResponse"></part>
+  </message>
+  <message name="criarGrupoUsuarioRequest">
+    <part name="parameters" element="ns0:criarGrupoUsuarioRequest"></part>
+  </message>
+  <message name="removerGrupoUsuarioRequest">
+    <part name="parameters" element="ns0:removerGrupoUsuarioRequest"></part>
+  </message>
+  <!-- <message name="PortoFaultException"> <part name="fault" element="ns2:portoSeguroFaultInfo"></part> 
+    </message> -->
+  <message name="listarGrupoUsuarioResponse">
+    <part name="parameters" element="ns0:listarGrupoUsuarioResponse"></part>
+  </message>
+  <message name="atualizarGrupoUsuarioResponse">
+    <part name="parameters" element="ns0:atualizarGrupoUsuarioResponse"></part>
+  </message>
+  <message name="procurarGrupoUsuarioPorNomeGrupoUsuarioContendoResponse">
+    <part name="parameters"
+      element="ns0:procurarGrupoUsuarioPorNomeGrupoUsuarioContendoResponse"></part>
+  </message>
+  <message name="procurarGrupoUsuarioPorNomeGrupoUsuarioContendoRequest">
+    <part name="parameters"
+      element="ns0:procurarGrupoUsuarioPorNomeGrupoUsuarioContendoRequest"></part>
+  </message>
+  <portType name="GruposUsuarioWebServicePortType">
+    <documentation>
+      Servico para manutencao de Grupos de Usuario
+    </documentation>
+
+    <operation name="procurarPorNomeGrupoUsuarioContendo">
+      <input
+        message="ns0:procurarGrupoUsuarioPorNomeGrupoUsuarioContendoRequest"
+        wsam:Action="procurarGrupoUsuarioPorNomeGrupoUsuarioContendoRequest"></input>
+      <output
+        message="ns0:procurarGrupoUsuarioPorNomeGrupoUsuarioContendoResponse"
+        wsam:Action="procurarGrupoUsuarioPorNomeGrupoUsuarioContendoResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="procurarPorNomeGrupoUsuarioContendoResponseFault"></fault>
+    </operation>
+    <operation name="procurar">
+      <input message="ns0:procurarGrupoUsuarioRequest"
+        wsam:Action="procurarGrupoUsuarioRequest"></input>
+      <output message="ns0:procurarGrupoUsuarioResponse"
+        wsam:Action="procurarGrupoUsuarioResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="procurarResponseFault"></fault>
+    </operation>
+    <operation name="criar">
+      <input message="ns0:criarGrupoUsuarioRequest" wsam:Action="criarGrupoUsuarioRequest"></input>
+      <output message="ns0:criarGrupoUsuarioResponse"
+        wsam:Action="criarGrupoUsuarioResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="criarResponseFault"></fault>
+    </operation>
+    <operation name="remover">
+      <input message="ns0:removerGrupoUsuarioRequest" wsam:Action="removerGrupoUsuarioRequest"></input>
+      <output message="ns0:removerGrupoUsuarioResponse"
+        wsam:Action="removerGrupoUsuarioResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="removerResponseFault"></fault>
+    </operation>
+    <operation name="atualizar">
+      <input message="ns0:atualizarGrupoUsuarioRequest"
+        wsam:Action="atualizarGrupoUsuarioRequest"></input>
+      <output message="ns0:atualizarGrupoUsuarioResponse"
+        wsam:Action="atualizarGrupoUsuarioResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="atualizarResponseFault"></fault>
+    </operation>
+    <operation name="listar">
+      <input message="ns0:listarGrupoUsuarioRequest" wsam:Action="listarGrupoUsuarioRequest"></input>
+      <output message="ns0:listarGrupoUsuarioResponse"
+        wsam:Action="listarGrupoUsuarioResponse"></output>
+      <fault name="PortoFaultException" message="ns2:PortoFaultException"
+        wsam:Action="listarResponseFault"></fault>
+    </operation>
+  </portType>
+</wsdl:definitions>

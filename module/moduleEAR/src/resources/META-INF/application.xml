@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><application version="6" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd">
+  <display-name>moduleEAR</display-name>
+  <module>
+    <web>
+      <web-uri>moduleWS.war</web-uri>
+      <context-root>/moduleWS</context-root>
+    </web>
+  </module>
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
+</application>

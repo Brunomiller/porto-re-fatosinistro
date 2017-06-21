@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.porto.re.module</groupId>
+		<artifactId>module</artifactId>
+		<version>1.2.4-SNAPSHOT</version>
+	</parent>
+	<artifactId>moduleService</artifactId>
+	<name>moduleService</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>3.0.6</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdlLocation>serviceDescriptors/GrupoUsuarioServiceSOAP11_V1_0.wsdl</wsdlLocation>
+                  <wsdl>${basedir}/src/main/resources/serviceDescriptors/GrupoUsuarioServiceSOAP11_V1_0.wsdl</wsdl>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+
+	<dependencies>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- Java EE 6 Spec. -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Arq. Components -->
+		<dependency>
+			<groupId>com.porto.re</groupId>
+			<artifactId>re-jpa-persistence</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.porto.re</groupId>
+			<artifactId>re-exception</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<!-- arquilian -->
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+			<version>1.0.0.CR3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.main.extras</groupId>
+			<artifactId>glassfish-embedded-all</artifactId>
+			<version>3.1.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Used by arquillian, but provided by the container -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.2.6.Final</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>jboss-logging</artifactId>
+					<groupId>org.jboss.logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.2.Final</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>jboss-logging</artifactId>
+					<groupId>org.jboss.logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-testing</artifactId>
+			<version>4.2.6.Final</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>jbossjta</artifactId>
+					<groupId>org.jboss.jbossts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xapool</artifactId>
+					<groupId>com.experlog</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- Modules Dependencies -->
+		<dependency>
+			<artifactId>moduleJPA</artifactId>
+			<groupId>com.porto.re.module</groupId>
+			<version>1.2.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<artifactId>moduleServiceInterface</artifactId>
+			<groupId>com.porto.re.module</groupId>
+			<version>1.2.4-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.1.8.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

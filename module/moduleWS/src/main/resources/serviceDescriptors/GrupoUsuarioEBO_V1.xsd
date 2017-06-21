@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioebo/v1"
+  version="1.0"
+  targetNamespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioebo/v1"
+  elementFormDefault="qualified">
+
+  <xs:complexType name="GrupoUsuarioEBO">
+    <xs:annotation>
+      <xs:documentation>
+        <descricao>Tipo para Grupos de Usuario</descricao>
+        <entidade>Grupo Usuario</entidade>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codigoGrupoUsuario" type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>codigo grupo usuario</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nomeGrupoUsuario" type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>nome grupo usuario</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flagAtivo" type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>flag ativo grupo usuario</atributo>
+            <regrasMapeamento>Trafegado como S ou N</regrasMapeamento>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codigoEmpresaUsuarioUltimaAlteracao"
+        type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>codigo empresa usuario ultima alteracao</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codigoMatriculaUsuarioUltimaAlteracao"
+        type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>codigo matricula usuario ultima alteracao</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codigoTipoUsuarioUltimaAlteracao"
+        type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>codigo tipo usuario ultima alteracao</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dataUltimaAtualizacao" type="xs:dateTime"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <atributo>data ultima alteracao</atributo>
+            <regrasMapeamento />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ListaGruposUsuarioEBO">
+    <xs:annotation>
+      <xs:documentation>Tipo para lista de Grupos de Usuario
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="grupoUsuarioEBO" minOccurs="0"
+        maxOccurs="unbounded" type="GrupoUsuarioEBO" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

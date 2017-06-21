@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="GrupoUsuarioServiceSOAP11_v1_0"
+  xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+  xmlns:ns1="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+  xmlns:ns2="http://www.porto.com/re/exception">
+
+  <import
+    namespace="http://www.portoseguro.com.br/ramoselementares/admin/grupousuarioservice/v1_0"
+    location="GrupoUsuarioService_V1_0.wsdl">
+  </import>
+
+  <binding name="GrupoUsuarioWebServicePortBinding" type="ns1:GruposUsuarioWebServicePortType">
+    <soap:binding style="document"
+      transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="procurarPorNomeGrupoUsuarioContendo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="procurar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="criar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="remover">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="atualizar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="listar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="PortoFaultException">
+        <soap:fault name="PortoFaultException" use="literal" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="GrupoUsuarioWebService">
+    <port name="GrupoUsuarioWebServicePort" binding="ns1:GrupoUsuarioWebServicePortBinding">
+      <soap:address
+        location="http://localhost:9082/moduleWS/GruposUsuarioWebService" />
+    </port>
+  </service>
+</wsdl:definitions>

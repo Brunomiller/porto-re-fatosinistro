@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema
+  targetNamespace="http://www.portoseguro.com.br/foundation/PortoSeguroMessage/v1_0"
+  version="1.0" elementFormDefault="qualified" attributeFormDefault="unqualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://www.portoseguro.com.br/foundation/PortoSeguroMessage/v1_0"
+  xmlns:common="http://www.portoseguro.com.br/ebo/Common/V1_0">
+
+  <xsd:import namespace="http://www.portoseguro.com.br/ebo/Common/V1_0"
+    schemaLocation="CommonComponents.xsd" />
+
+  <xsd:element name="portoSeguroFaultInfo" type="tns:PortoSeguroFaultInfoType" />
+
+  <xsd:complexType name="PortoSeguroFaultInfoType">
+    <xsd:annotation>
+      <xsd:documentation>Elemento usado para encapsular informacoes de
+        falhas na execucao de servicos.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="mensagens" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="codigo" type="xsd:integer" />
+            <xsd:element name="mensagem" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="dataOcorrencia" type="xsd:dateTime" />
+      <xsd:element name="fonte" type="xsd:string" />
+      <xsd:element name="tipo" minOccurs="1" maxOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NEGOCIO" />
+            <xsd:enumeration value="SISTEMA" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="additionalInfo" type="common:ExtensionType" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+

@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.porto.re.module</groupId>
+		<artifactId>module</artifactId>
+		<version>1.2.4-SNAPSHOT</version>
+	</parent>
+	<artifactId>moduleServiceInterface</artifactId>
+	<name>moduleServiceInterface</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Modules Dependencies -->
+		<dependency>
+			<artifactId>moduleJPA</artifactId>
+			<groupId>com.porto.re.module</groupId>
+			<version>1.2.4-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Arq. Components -->
+		<dependency>
+			<groupId>com.porto.re</groupId>
+			<artifactId>re-exception</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.porto.re</groupId>
+			<artifactId>re-contextaware</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+	</dependencies>
+</project>
